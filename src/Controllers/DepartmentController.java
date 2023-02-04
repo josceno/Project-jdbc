@@ -19,4 +19,24 @@ public class DepartmentController {
             e.printStackTrace();
         }
     }
+
+    public  static void insertDepartments(Connection connection){
+
+        try {
+            Statement st = connection.createStatement();
+            st.executeUpdate("INSERT INTO department (Name) VALUES \n" +
+                    "  ('Computers'),\n" +
+                    "  ('Electronics'),\n" +
+                    "  ('Fashion'),\n" +
+                    "  ('Books'),\n"+
+                    "('groceries');\n");
+
+            System.out.println("Successfully inserted into Departments");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
 }

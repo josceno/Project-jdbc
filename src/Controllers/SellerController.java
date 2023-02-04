@@ -23,5 +23,20 @@ public class SellerController {
             e.printStackTrace();
         }
 
+    }public  static  void insertSeller(Connection connection){
+        try{
+            Statement st = connection.createStatement();
+            st.executeUpdate("INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId) VALUES \n" +
+                    "  ('Bob Brown','bob@gmail.com','1998-04-21 00:00:00',1000,1),\n" +
+                    "  ('Maria Green','maria@gmail.com','1979-12-31 00:00:00',3500,2),\n" +
+                    "  ('Alex Grey','alex@gmail.com','1988-01-15 00:00:00',2200,1),\n" +
+                    "  ('Martha Red','martha@gmail.com','1993-11-30 00:00:00',3000,4),\n" +
+                    "  ('Donald Blue','donald@gmail.com','2000-01-09 00:00:00',4000,3),\n" +
+                    "  ('Alex Pink2','bob@gmail.com','1997-03-04 00:00:00',3000,2);");
+
+            System.out.println("Successfully inserted into Seller");
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
     }
 }

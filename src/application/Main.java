@@ -1,5 +1,6 @@
 package application;
 
+import Controllers.DepartmentController;
 import Controllers.SellerController;
 import Models.Department;
 import db.DB;
@@ -11,6 +12,11 @@ public class Main {
         Connection connection = DB.getConnection();
         //Department.createDepartment(connection);
         //SellerController.createSeller(connection);
+        //DepartmentController.insertDepartments(connection);
+        //SellerController.insertSeller(connection);
+
+
+
         DB.closeConnection();
     }
 }
