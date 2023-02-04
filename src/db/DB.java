@@ -13,7 +13,7 @@ public class DB {
     public static  Connection getConnection(){
         if(connection == null){
            try{
-                Properties properties = loadPerties();
+                Properties properties = loadProperties();
                 String url = properties.getProperty("dburl");
                 connection = DriverManager.getConnection(url,properties);
                 System.out.println("Successful connection");
@@ -33,7 +33,7 @@ public class DB {
             }
         }
     }
-    private  static Properties loadPerties(){
+    private  static Properties loadProperties(){
         try(FileInputStream fs = new FileInputStream("db.properties")){
             Properties props = new Properties();
             props.load(fs);
