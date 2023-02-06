@@ -35,10 +35,10 @@ public class Main {
                     "Genesinho@gmail.com",
                     new java.sql.Date(sdf.parse("25/04/2018").getTime()),
                     3000.00,
-                    DB.getDepartments().get(0)
+                    db.getDepartments().get(0)
             ));
             //SellerController.showSellers(connection);
-            DB.getSellers().forEach(System.out::println);
+            db.getSellers().forEach(System.out::println);
 
 
         } catch (ParseException e) {

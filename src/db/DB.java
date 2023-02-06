@@ -52,46 +52,8 @@ public interface DB {
             e.printStackTrace();
         }
     }
-    public static List<Department> getDepartments() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from department");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        List<Department> departamentos = new ArrayList<>();
-        while (resultSet.next()){
-            departamentos.add(new Department(resultSet.getInt(1),resultSet.getString(2)));
-        }
-        return  departamentos;
-    }
-    public static List<Seller> getSellers()  {
-        List<Seller> sellers = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from seller");
-            ResultSet resultSet = preparedStatement.executeQuery();
+    public  List<Department> getDepartments() throws SQLException;
 
-            while (resultSet.next()) {
-                Stream<Department> department;
-                department  =  getDepartments().stream().filter(x ->
-                            {
-                                try {
-                                    return x.getId() == resultSet.getInt(6);
-                                } catch (SQLException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            }
-                    );
-                sellers.add(
-                        new Seller(
-                                resultSet.getInt(1),
-                                resultSet.getString(2),
-                                resultSet.getString(3),
-                                resultSet.getDate(4),
-                                resultSet.getDouble(5),
-                                department.collect(Collectors.toList()).get(0)
-                        )
-                        );
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return  sellers;
-}
+    public List<Seller> getSellers();
+
 }
