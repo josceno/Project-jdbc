@@ -3,9 +3,11 @@ package application;
 import Controllers.DepartmentController;
 import Controllers.SellerController;
 import Models.Department;
+import Models.Employees;
 import Models.Seller;
 import db.DB;
 import db.DbException;
+import db.DBservices.MySqlDBconnection;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,13 +20,16 @@ import java.text.SimpleDateFormat;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+        
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
 
+        DB db = new MySqlDBconnection();
+
         try{
-            connection = DB.getConnection();
+            connection = db.getConnection();
 
             SellerController.insertSeller(connection, new Seller("Genesinho",
                     "Genesinho@gmail.com",
@@ -39,14 +44,10 @@ public class Main {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         } finally {
-            DB.closeResultSet(resultSet);
-            DB.closeStatament(statement);
-            DB.closeConnection();
+            db.closeResultSet(resultSet);
+            db.closeStatament(statement);
+            db.closeConnection();
         }
 
-
-
-
-        DB.closeConnection();
     }
 }

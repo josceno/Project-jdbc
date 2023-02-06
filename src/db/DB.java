@@ -13,42 +13,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DB {
-    private  static Connection connection = null;
+public interface DB {
+    static Connection connection = null;
 
-    public static  Connection getConnection(){
-        if(connection == null){
-           try{
-                Properties properties = loadProperties();
-                String url = properties.getProperty("dburl");
-                connection = DriverManager.getConnection(url,properties);
-                System.out.println("Successful connection");
+    public Connection getConnection();
+       
+  
+    
 
-
-           }catch (SQLException e){
-               throw  new DbException("Connection Attempt failed");
-           }
-        }
-        try {
-            getDepartments();
-            System.out.println("Successfully Departments Data importing");
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }catch (Exception e){
-            throw  new DbException("Failure in import departments process ");
-        }
-        try {
-            getSellers();
-            System.out.println("Successfully Departments Data importing");
-        }catch (Exception e){
-            //throw  new DbException("Failure in import Sellers process ");
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-    public static void closeConnection(){
+    default void closeConnection(){
         if(connection != null){
             try{
                 connection.close();
@@ -57,17 +30,9 @@ public class DB {
             }
         }
     }
-    private  static Properties loadProperties(){
-        try(FileInputStream fs = new FileInputStream("db.properties")){
-            Properties props = new Properties();
-            props.load(fs);
-            return  props;
-        }catch (IOException e){
-            throw new DbException(e.getMessage());
-        }
-
-    }
-    public  static  void closeStatament(Statement st){
+    public  Properties loadProperties();
+       
+    default  void closeStatament(Statement st){
         try {
             if(st != null){
                 st.close();
@@ -77,7 +42,7 @@ public class DB {
             e.printStackTrace();
         }
     }
-    public static  void closeResultSet(ResultSet rs){
+    default void closeResultSet(ResultSet rs){
         try{
             if(rs !=null){
                 rs.close();
@@ -128,9 +93,5 @@ public class DB {
             e.printStackTrace();
         }
         return  sellers;
-    }
 }
-
-
-
-
+}
