@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Seller;
+import db.Exceptions.DbIntegrityException;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -81,6 +82,21 @@ public class SellerController {
             e.printStackTrace();
         }
 
+    }
+    public  static  void deleteSeller(Connection connection, int id){
+        try{
+            PreparedStatement pst = connection.prepareStatement(
+                    "DELETE FROM seller "
+                    +"WHERE "
+                    +"(Id = ?)"
+            );
+            pst.setInt(1,id);
+            int rowsAffected =pst.executeUpdate();
+
+            System.out.println("Rows affectd number: "+ rowsAffected);
+        }catch (SQLException e){
+            throw  new DbIntegrityException(e.getMessage());
+        }
     }
     public  static  void  showSellers(Connection connection){
         try{

@@ -2,16 +2,11 @@ package db;
 
 import Models.Department;
 import Models.Seller;
+import db.Exceptions.DbException;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public interface DB {
     static Connection connection = null;

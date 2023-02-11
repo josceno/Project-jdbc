@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Department;
+import db.Exceptions.DbIntegrityException;
 
 import java.sql.*;
 import java.util.HashSet;
@@ -33,6 +34,28 @@ public class DepartmentController {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public static  void deleteDepartments(Connection connection, Integer id){
+
+        try {
+            PreparedStatement pst = connection.prepareStatement(
+                    "DELETE FROM department "
+                            +"WHERE "
+                            +"(Id = ?)"
+            );
+
+            pst.setInt(1,id);
+
+           int rowsAffected = pst.executeUpdate();
+
+            System.out.println("Number of rous deleted: " + rowsAffected);
+
+
+
+        }catch (SQLException e){
+            throw  new DbIntegrityException(e.getMessage());
+        }
+
     }
     public  static  void  updateDepartments(Connection connection, String name, Department department){
         try{
