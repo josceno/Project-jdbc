@@ -31,19 +31,25 @@ public class Main {
         try{
             connection = db.getConnection();
 
-            SellerController.insertSeller(connection, new Seller("Genesinho",
+            /*SellerController.insertSeller(connection, new Seller("Genesinho",
                     "Genesinho@gmail.com",
                     new java.sql.Date(sdf.parse("25/04/2018").getTime()),
                     3000.00,
                     db.getDepartments().get(0)
             ));
             //SellerController.showSellers(connection);
-            db.getSellers().forEach(System.out::println);
+            db.getSellers().forEach(System.out::println);*/
+
+            /*DepartmentController.insertDepartments(connection,
+                    new Department("DepTest")
+                    );/*
+            db.getDepartments().forEach(System.out::println);
 
 
-        } catch (ParseException e) {
+
+        } /*catch (ParseException e) {
             throw new RuntimeException(e);
-        } finally {
+        }*/ finally {
             db.closeResultSet(resultSet);
             db.closeStatament(statement);
             db.closeConnection();

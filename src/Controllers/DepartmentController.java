@@ -1,6 +1,9 @@
 package Controllers;
 
+import Models.Department;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -20,17 +23,14 @@ public class DepartmentController {
         }
     }
 
-    public  static void insertDepartments(Connection connection){
+    public  static void insertDepartments(Connection connection, Department department){
 
         try {
-            Statement st = connection.createStatement();
-            st.executeUpdate("INSERT INTO department (Name) VALUES \n" +
-                    "  ('Computers'),\n" +
-                    "  ('Electronics'),\n" +
-                    "  ('Fashion'),\n" +
-                    "  ('Books'),\n"+
-                    "('groceries');\n");
 
+            PreparedStatement st = connection.prepareStatement("INSERT INTO department (Name) VALUES \n" +
+                    "(?)");
+            st.setString(1,department.getName());
+            st.executeUpdate();
             System.out.println("Successfully inserted into Departments");
         }catch (SQLException e){
             e.printStackTrace();
