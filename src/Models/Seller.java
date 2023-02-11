@@ -1,7 +1,6 @@
 package Models;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Seller extends Employees {
     
@@ -25,7 +24,7 @@ public class Seller extends Employees {
                 ", email='" + this.getEmail() + '\'' +
                 ", birthday=" + this.getEmail() +
                 ", baseSalary=" + this.getBaseSalary() +
-                ", depId=" + this.getDepId().getId() +
+                ", depId=" + this.getDepartment().getId() +
                 '}';
     }
 }

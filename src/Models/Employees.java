@@ -1,7 +1,6 @@
 package Models;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 
 abstract public class Employees {
@@ -10,23 +9,23 @@ abstract public class Employees {
     private String email;
     private Date birthday;
     private  double baseSalary;
-    private  Department depId;
+    private  Department department;
 
     public Employees(){}
-    public Employees(int id, String name, String email, Date birthday, double baseSalary, Department depId) {
+    public Employees(int id, String name, String email, Date birthday, double baseSalary, Department department) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.birthday = birthday;
         this.baseSalary = baseSalary;
-        this.depId = depId;
+        this.department = department;
     }
-    public Employees(String name, String email, Date birthday, double baseSalary, Department depId) {
+    public Employees(String name, String email, Date birthday, double baseSalary, Department department) {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
         this.baseSalary = baseSalary;
-        this.depId = depId;
+        this.department = department;
     }
     
     public int getId() {
@@ -66,12 +65,12 @@ abstract public class Employees {
         this.baseSalary = baseSalary;
     }
 
-    public Department getDepId() {
-        return depId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepId(Department depId) {
-        this.depId = depId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     
