@@ -4,17 +4,25 @@ import java.sql.Date;
 
 public class Seller extends Employees {
     
-
+    private  Department department;
     public Seller(){
 
     }
-    public Seller(int id, String name, String email, Date birthday, double baseSalary, Department depId) {
-       super(id,name,email,birthday,baseSalary,depId);
+    public Seller(int id, String name, String email, Date birthday, double baseSalary, Department department) {
+       super(id,name,email,birthday,baseSalary);
+       this.department = department;
     }
-    public Seller(String name, String email, Date birthday, double baseSalary, Department depId) {
-        super(name,email,birthday,baseSalary,depId);
+    public Seller(String name, String email, Date birthday, double baseSalary, Department department) {
+        super(name,email,birthday,baseSalary);
+        this.department = department;
+    }
+    public Department getDepartment() {
+        return department;
     }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     @Override
     public String toString() {
