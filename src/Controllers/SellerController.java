@@ -1,11 +1,10 @@
 package Controllers;
 
-import Models.Department;
 import Models.Seller;
+import db.Exceptions.DbIntegrityException;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.logging.SimpleFormatter;
 
 public class SellerController {
     public static void createSeller(Connection connection){
@@ -40,7 +39,7 @@ public class SellerController {
             pst.setString(2,seller.getEmail());
             pst.setDate(3, seller.getBirthday());
             pst.setDouble(4,seller.getBaseSalary());
-            pst.setInt(5,seller.getDepId().getId());
+            pst.setInt(5,seller.getDepartment().getId());
 
             pst.executeUpdate();
 
@@ -48,6 +47,55 @@ public class SellerController {
 
         }catch (SQLException exception){
             exception.printStackTrace();
+        }
+    }
+    public static  void updateSellers(Connection connection, Seller seller){
+
+
+        try{
+            PreparedStatement pst = connection.prepareStatement(
+                    "UPDATE seller "
+                            +"SET baseSalary = BaseSalary + ?"
+                            +"WHERE "
+                            +"(DepartmentId = ?)");
+
+            pst.setDouble(1,200.00);
+            pst.setInt(2,seller.getDepartment().getId());
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+    public static  void updateSellers(Connection connection, int id){
+        try{
+            PreparedStatement pst = connection.prepareStatement(
+                    "UPDATE seller "
+                            +"SET baseSalary = BaseSalary + ?"
+                            +"WHERE "
+                            +"(DepartmentId = ?)");
+
+            pst.setDouble(1,200.00);
+            pst.setInt(2,id);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+    public  static  void deleteSeller(Connection connection, int id){
+        try{
+            PreparedStatement pst = connection.prepareStatement(
+                    "DELETE FROM seller "
+                    +"WHERE "
+                    +"(Id = ?)"
+            );
+            pst.setInt(1,id);
+            int rowsAffected =pst.executeUpdate();
+
+            System.out.println("Rows affectd number: "+ rowsAffected);
+        }catch (SQLException e){
+            throw  new DbIntegrityException(e.getMessage());
         }
     }
     public  static  void  showSellers(Connection connection){

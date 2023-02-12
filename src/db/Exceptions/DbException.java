@@ -1,4 +1,4 @@
-package db;
+package db.Exceptions;
 
 public class DbException extends  RuntimeException{
     private static final long  serialVersion = 1L;
