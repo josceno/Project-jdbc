@@ -2,6 +2,7 @@ package application;
 
 import Controllers.DepartmentController;
 import Controllers.SellerController;
+import Models.entities.Department;
 import db.DB;
 import db.DBservices.MySqlDBconnection;
 
@@ -15,26 +16,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        DB db = new MySqlDBconnection();
-
-        try{
-            connection = db.getConnection();
-
-            SellerController.deleteSeller(connection,2);
-            SellerController.showSellers(connection);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }finally {
-            db.closeResultSet(resultSet);
-            db.closeStatament(statement);
-            db.closeConnection();
-        }
+        Department obj = new Department(1,"book");
+        System.out.println(obj);
 
     }
 }

@@ -1,7 +1,7 @@
 package db.DBservices;
 
-import Models.Department;
-import Models.Seller;
+import Models.entities.Department;
+import Models.entities.Seller;
 import db.DB;
 import db.Exceptions.DbException;
 

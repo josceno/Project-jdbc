@@ -1,10 +1,11 @@
 package Controllers;
 
-import Models.Seller;
 import db.Exceptions.DbIntegrityException;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+
+import Models.entities.Seller;
 
 public class SellerController {
     public static void createSeller(Connection connection){

@@ -1,11 +1,12 @@
 package Controllers;
 
-import Models.Department;
 import db.Exceptions.DbIntegrityException;
 
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
+
+import Models.entities.Department;
 
 public class DepartmentController {
     public static void createDepartment(Connection connection){

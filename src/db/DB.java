@@ -1,7 +1,7 @@
 package db;
 
-import Models.Department;
-import Models.Seller;
+import Models.entities.Department;
+import Models.entities.Seller;
 import db.Exceptions.DbException;
 
 import java.sql.*;
